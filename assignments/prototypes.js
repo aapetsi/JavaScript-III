@@ -24,7 +24,7 @@
     this.isFlying = false;
   }
 
-  HOW TO TEST OUR SOLUTION:
+  // HOW TO TEST OUR SOLUTION:
 
   const jumbo = new Airplane('Jumbo');
   console.log(jumbo.name)              // 'Jumbo'
@@ -33,7 +33,7 @@
   console.log(jumbo.isFlying)          // true
   jumbo.land();
   console.log(jumbo.isFlying)          // false
-*/
+
 
 /*
 
@@ -49,8 +49,28 @@
 function Person(name, age) {
   this.name = name;
   this.age = age;
+  this.stomach = []
 };
 
+Person.prototype.greet = function () {
+  return `Hello, I am ${this.name} and I am ${this.age} year(s) old.`
+}
+
+Person.prototype.eat = function (food) {
+  this.stomach.push(food)
+}
+
+Person.prototype.poop = function () {
+  this.stomach = []
+}
+
+// const myPerson = new Person("Apetsi", 28)
+// myPerson.eat("burger")
+// myPerson.eat("burger")
+// myPerson.eat("burger")
+// myPerson.poop()
+// myPerson.eat("burger")
+// console.log(myPerson)
 
 /*
   TASK 2
@@ -63,18 +83,61 @@ function Person(name, age) {
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
 
-  TASK 3
+  */
+function Car(model, name, make) {
+  this.model = model;
+  this.name = name;
+  this.make = make;
+  this.odometer = 0;
+  this.canCrash = false;
+  this.canRepair = false;
+}
 
-  - Build a Baby constructor that subclasses the Person built earlier.
-  - Babies of course inherit the ability to greet, which can be strange.
-  - Babies should have the ability to play, which persons don't.
-  - By playing, a string is returned with some text of your choosing.
+Car.prototype.drive = function (distance) {
+  if (this.canCrash) {
+    return `I crashed at ${this.odometer} miles!`
+  }
+  return this.odometer = distance;
+}
 
-  TASK 4
+Car.prototype.crash = function () {
+  this.canCrash = true;
+}
 
-  Use your imagination and come up with constructors that allow to build objects
-  With amazing and original capabilities. Build 3 small ones, or a very
-  complicated one with lots of state. Surprise us!
+Car.prototype.canBeRepaired = function() {
+  this.canRepair = true;
+}
+
+const myCar = new Car("Honda", "Sport", "Accord")
+myCar.drive(58)
+// console.log(myCar);
+
+/*
+
+TASK 3
+
+- Build a Baby constructor that subclasses the Person built earlier.
+- Babies of course inherit the ability to greet, which can be strange.
+- Babies should have the ability to play, which persons don't.
+- By playing, a string is returned with some text of your choosing.
+*/
+function Baby(name, age) {
+  Person.call(this, name, age);
+}
+
+// Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function() {
+  return "Googoo gaga. I am playing"
+}
+const myBaby = new Baby("jason", 5)
+console.log(myBaby.play())
+/*
+
+TASK 4
+
+Use your imagination and come up with constructors that allow to build objects
+With amazing and original capabilities. Build 3 small ones, or a very
+complicated one with lots of state. Surprise us!
 
 */
 
