@@ -45,7 +45,14 @@
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
+*/
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+};
 
+
+/*
   TASK 2
 
   - Build a Car constructor that takes model name and make.
